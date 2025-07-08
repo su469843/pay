@@ -1,0 +1,46 @@
+
+🔍 数据库连接诊断报告
+==================================================
+
+📊 总结: 3 通过, 2 失败, 0 警告
+
+1. ✅ Environment Variables
+   DATABASE_URL 环境变量已正确设置
+
+2. ✅ Connection String
+   连接字符串格式正确，SSL已启用
+   详细信息: {
+  "protocol": "postgresql:",
+  "hostname": "ep-summer-river-a1trt8kl-pooler.ap-southeast-1.aws.neon.tech",
+  "port": "5432",
+  "database": "neondb",
+  "username": "neondb_owner",
+  "hasPassword": true,
+  "searchParams": {
+    "sslmode": "require",
+    "channel_binding": "require"
+  }
+}
+
+3. ✅ Network Connectivity
+   成功连接到 ep-summer-river-a1trt8kl-pooler.ap-southeast-1.aws.neon.tech:5432
+
+4. ❌ Database Connection
+   数据库连接失败: Connection terminated unexpectedly
+   详细信息: {
+  "error": "Connection terminated unexpectedly"
+}
+
+5. ❌ Database Permissions
+   无法连接数据库进行权限检查: Connection terminated unexpectedly
+   详细信息: {
+  "error": "Connection terminated unexpectedly"
+}
+
+💡 建议:
+- 检查网络连接和防火墙设置
+- 验证数据库连接字符串是否正确
+- 确认数据库服务器是否正在运行
+- 检查用户名和密码是否正确
+- 验证数据库名称是否存在
+- 如果使用Neon数据库，确认项目未暂停
