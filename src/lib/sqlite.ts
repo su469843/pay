@@ -149,9 +149,11 @@ export const dbHelpers = {
   }
 };
 
-export default {
+const sqliteDatabase = {
   getDatabase,
   closeDatabase,
   initializeDatabase,
   dbHelpers
 };
+
+export default sqliteDatabase;

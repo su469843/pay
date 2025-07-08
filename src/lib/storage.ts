@@ -182,7 +182,7 @@ export class DiscountService {
   }
   
   // 使用优惠码
-  static async useDiscount(discountId: string): Promise<void> {
+  static async applyDiscount(discountId: string): Promise<void> {
     await query(
       'UPDATE discounts SET usage_count = usage_count + 1 WHERE discount_id = $1',
       [discountId]

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Order } from '@/lib/storage'
 
@@ -16,13 +16,7 @@ export default function SuccessPage({}: SuccessPageProps) {
   const [error, setError] = useState('')
   
   // 获取订单信息
-  useEffect(() => {
-    if (orderId) {
-      fetchOrder()
-    }
-  }, [orderId])
-  
-  const fetchOrder = async () => {
+  const fetchOrder = useCallback(async () => {
     try {
       setLoading(true)
       const response = await fetch(`/api/orders/${orderId}`)
@@ -41,7 +35,13 @@ export default function SuccessPage({}: SuccessPageProps) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [orderId, router])
+
+  useEffect(() => {
+    if (orderId) {
+      fetchOrder()
+    }
+  }, [orderId, fetchOrder])
   
   if (loading) {
     return (

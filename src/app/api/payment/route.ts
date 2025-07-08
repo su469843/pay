@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
       }
       
       // 使用优惠码
-      await DiscountService.useDiscount(discount.discountId)
+      await DiscountService.applyDiscount(discount.discountId)
     }
     
     // 模拟支付处理（在实际应用中，这里会调用真实的支付网关）

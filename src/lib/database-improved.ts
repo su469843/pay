@@ -381,7 +381,7 @@ process.on('SIGTERM', async () => {
 export { pool }
 
 // 导出默认实例
-export default {
+const databaseImproved = {
   query,
   getClient,
   testConnection,
@@ -389,3 +389,5 @@ export default {
   initializeDatabase,
   pool
 }
+
+export default databaseImproved

@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useState, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import { Order } from '@/lib/storage'
 
 interface PaymentPageProps {}
@@ -29,13 +29,7 @@ export default function PaymentPage({}: PaymentPageProps) {
   const [validatingDiscount, setValidatingDiscount] = useState(false)
   
   // 获取订单信息
-  useEffect(() => {
-    if (orderId) {
-      fetchOrder()
-    }
-  }, [orderId])
-  
-  const fetchOrder = async () => {
+  const fetchOrder = useCallback(async () => {
     try {
       setLoading(true)
       const response = await fetch(`/api/orders/${orderId}`)
@@ -54,7 +48,15 @@ export default function PaymentPage({}: PaymentPageProps) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [orderId, router])
+
+  useEffect(() => {
+    if (orderId) {
+      fetchOrder()
+    }
+  }, [orderId, fetchOrder])
+  
+
   
   // 验证优惠码
   const validateDiscount = async () => {
